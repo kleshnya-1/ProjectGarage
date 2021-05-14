@@ -1,21 +1,29 @@
 package com.project.garage.dao;
 
 
-import com.project.garage.models.objects.Car;
-import com.project.garage.models.objects.ExpectedCar;
+import com.project.garage.models.serviceObjects.SubOrder;
+import com.project.garage.models.serviceObjects.SubOrderWithSpecialConditions;
+import com.project.garage.services.*;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class GarageDAO {
 
-    private static String URL = "jdbc:postgresql://localhost:5432/project_garage_database";
+   /* private static String URL = "jdbc:postgresql://localhost:5432/project_garage_database";
     private static String USERNAME = "postgres";
-    private static String PASSWORD = "1";
-    private static Connection connection;
+    private static String PASSWORD = "1";*/
+    Connection connection = new ConnectionMaker().makeConnection();
+    WatchCalc watchCalc = new WatchCalc();
+    FuelTupeConverter fuelTupeConverter = new FuelTupeConverter();
+    CarListFiller carListFiller = new CarListFiller();
+    AskerToBaseForCarAndDriver askerToBaseForCarAndDriver = new AskerToBaseForCarAndDriver();
 
-    static {
+    //   FuelCalc fuelCalc = new FuelCalc();
+
+    /*static {
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
@@ -26,7 +34,7 @@ public class GarageDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-    }
+    }*/
 
 // придумать
    /* public List<Car>  getDriverAbleList(ExpectedCar expectedCar){
@@ -60,32 +68,44 @@ public class GarageDAO {
         return carList;
     }*/
 
-    public List<Car>  getCarListExpectedCars(ExpectedCar expectedCar){
-        List<Car> carList = new ArrayList<>();
+    public List<CarResult> getCarListSuitableCars(SubOrder subOrder, SubOrderWithSpecialConditions subOrderWithSpecialConditions){
+        List<CarResult> carList = new ArrayList<>();
+        ResultSet resultSet ;
         try {
-            //watch =? and
-            PreparedStatement preparedStatement = connection.prepareStatement
-                    ("select * from cars where " +
-                            " seats >=? and carrying >=? and is_ok = true ");
-            //SELECT * FROM course WHERE dept_name='Comp. Sci.' AND credits>3;
-            //preparedStatement.setInt(1, 12);
-            preparedStatement.setInt(1, expectedCar.getSeatsExpected());
-            preparedStatement.setInt(2, expectedCar.getCarryingKgExpected());
-            ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
-                Car car = new Car();
-                car.setBrand(resultSet.getString("brand"));
-                car.setModel(resultSet.getString("model"));
+            resultSet = askerToBaseForCarAndDriver.AskerToBaseForCarAndDriver(connection, subOrder, subOrderWithSpecialConditions);
+               /* PreparedStatement preparedStatement = connection.prepareStatement
+                        (" select * " +
+                                "from cars left join drivers on cars.driver_id = drivers.id where " +
+                                " seats >=? and carrying >=? and is_ok = true and watch=?  " );
+                //SELECT * FROM course WHERE dept_name='Comp. Sci.' AND credits>3;
+                //preparedStatement.setInt(1, 12);
+                preparedStatement.setInt(1, subOrder.getNumOfPass());
+                preparedStatement.setInt(2, subOrder.getNumOfKg());
+                preparedStatement.setInt(3, watchCalc.returnWatch(subOrder));
+                ResultSet resultSet = preparedStatement.executeQuery();*/
 
-                car.setDriver_id(resultSet.getInt("driver_id"));
-               // car.setBrand(resultSet.getString("brand"));
-               // car.setConsumption(resultSet.getInt("consumption"));
-                // car.setConsumption();
-                carList.add(car);
+            carList = carListFiller.CarListFiller(resultSet);
+                /*while (resultSet.next()) {
+                    CarResult carResult = new CarResult();
+                    carResult.setBrand(resultSet.getString("brand"));
+                    carResult.setModel(resultSet.getString("model"));
+                    carResult.setDriverName(resultSet.getString("name"));
+                    carResult.setDriver_id(resultSet.getInt("driver_id"));
+                    carResult.setEarnedThisWeek(resultSet.getInt("earned_this_week"));
+                    carResult.setFuelType(fuelTupeConverter.fuelTypeChooser(resultSet.getString("fuel")));
+                    System.out.println(resultSet.getString("fuel"));
+                    carList.add(carResult);
+            }*/
+
+             if (subOrderWithSpecialConditions != null) {
+                //code
+
+
             }
 
-        } catch (SQLException throwables) {
+
+        } catch (Exception throwables) {
             throwables.printStackTrace();
         }
         return carList;

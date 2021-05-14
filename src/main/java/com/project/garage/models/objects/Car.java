@@ -7,8 +7,8 @@ import lombok.Data;
 public class Car {
     private int id;
     private String brand;
-    private String model;
-    private boolean is_ok;
+    private  String model;
+    private boolean is_ok = true;
     private int driver_id;
     private double consumption;
     private FuelType fuelType;
@@ -17,6 +17,8 @@ public class Car {
     private  int reliabilityInPercents;
     private int seats;
     private int carryingKG;
+    private int tankCapacity;
+
 
 
 

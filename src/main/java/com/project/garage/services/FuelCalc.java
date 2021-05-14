@@ -19,4 +19,8 @@ public class FuelCalc {
 
         return (unloadedDistance/consumption) + (loadedDistance/expectedLoadedConsumption);
     }
+
+
+    //public double fuelNedeed()
+
 }

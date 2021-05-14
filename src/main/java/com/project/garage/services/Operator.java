@@ -6,7 +6,7 @@ import com.project.garage.models.serviceObjects.SubOrderWithSpecialConditions;
 
 public class Operator {
 
-    ExpectedCar expectedCar = new ExpectedCar();
+   /* ExpectedCar expectedCar = new ExpectedCar();
 
     public void getSubOrder(SubOrder subOrder) {
         expectedCar.setDistanceExpected(subOrder.getDistanceKm());
@@ -25,7 +25,7 @@ public class Operator {
 
     public ExpectedCar getExpectedCar(){
         return expectedCar;
-    }
+    }*/
 
 
 

@@ -5,5 +5,10 @@ public enum FuelType {
     gasoline,
     gas,
     diesel,
-    electric
+    electric;
+
+
+
+
+
 }
