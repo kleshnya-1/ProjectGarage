@@ -4,8 +4,8 @@ import com.project.garage.models.enums.FuelType;
 import lombok.Data;
 
 @Data
-public class Car {
-    private int id;
+public class Car implements Cloneable {
+    private String id;
     private String brand;
     private  String model;
     private boolean is_ok = true;
@@ -16,8 +16,14 @@ public class Car {
     private double fuel_in_tank;
     private  int reliabilityInPercents;
     private int seats;
-    private int carryingKG;
+    private int maxLoadKg;
     private int tankCapacity;
+
+
+    public Car clone() throws CloneNotSupportedException{
+
+        return (Car) super.clone();
+    }
 
 
 

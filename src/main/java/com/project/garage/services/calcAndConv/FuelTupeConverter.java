@@ -1,8 +1,12 @@
-package com.project.garage.services;
+package com.project.garage.services.calcAndConv;
 
 import com.project.garage.models.enums.FuelType;
 
 public class FuelTupeConverter {
+
+
+
+
     public FuelType fuelTypeChooser(String s){
         FuelType forReturn = null;
         switch (s){

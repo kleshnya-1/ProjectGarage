@@ -2,16 +2,14 @@ package com.project.garage.services;
 
 import com.project.garage.models.serviceObjects.SubOrder;
 import com.project.garage.models.serviceObjects.SubOrderWithSpecialConditions;
+import com.project.garage.services.calcAndConv.WatchCalc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.*;
 
 
-
-
-public class AskerToBaseForCarAndDriver {
+public class QueryToBaseForCarAndDriver {
     WatchCalc watchCalc = new WatchCalc();
 
 
@@ -30,6 +28,9 @@ public class AskerToBaseForCarAndDriver {
         preparedStatement.setInt(2, subOrder.getNumOfKg());
         preparedStatement.setInt(3, watchCalc.returnWatch(subOrder));
         ResultSet resultSet = preparedStatement.executeQuery();
+
+
+
         return resultSet;
     }
 

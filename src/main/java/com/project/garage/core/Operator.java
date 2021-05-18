@@ -1,4 +1,4 @@
-package com.project.garage.services;
+package com.project.garage.core;
 
 import com.project.garage.models.objects.ExpectedCar;
 import com.project.garage.models.serviceObjects.SubOrder;

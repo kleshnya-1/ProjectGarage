@@ -1,4 +1,4 @@
-package com.project.garage.services;
+package com.project.garage.services.calcAndConv;
 
 import com.project.garage.models.serviceObjects.SubOrder;
 

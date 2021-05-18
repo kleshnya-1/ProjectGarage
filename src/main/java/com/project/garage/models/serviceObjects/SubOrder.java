@@ -31,6 +31,7 @@ public class SubOrder {
         }
         if (carType == carType.P){
             this.numOfPass = numOfOrderElements;
+            this.numOfKg = numOfOrderElements*75;
         }
 
 
