@@ -3,12 +3,13 @@ package com.project.garage.dao;
 import com.project.garage.models.enums.FuelType;
 import com.project.garage.services.QueryToGasStationToFuelPrice;
 import com.project.garage.services.ConnectionMaker;
+import lombok.extern.slf4j.Slf4j;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
-
+@Slf4j
 public class GasStationDAO {
     Connection connection = new ConnectionMaker().makeConnection();
     QueryToGasStationToFuelPrice queryToGasStationToFuelPrice = new QueryToGasStationToFuelPrice();
@@ -32,6 +33,7 @@ public class GasStationDAO {
            e.printStackTrace();
        }
 
+       log.debug(fuelMap.toString());
         return fuelMap;
     }
 

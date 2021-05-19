@@ -10,6 +10,7 @@ public class CarResult extends Car {
     private String driverName;
     private double earnedThisWeek;
     private int driver_id;
+    private boolean is_male;
 
 
 
@@ -40,4 +41,11 @@ public class CarResult extends Car {
     }
 
 
+    public boolean isIs_male() {
+        return is_male;
+    }
+
+    public void setIs_male(boolean is_male) {
+        this.is_male = is_male;
+    }
 }

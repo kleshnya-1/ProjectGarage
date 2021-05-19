@@ -14,6 +14,7 @@ public class GarageReadDAO {
     CarListFiller carListFiller = new CarListFiller();
     QueryToBaseForCarAndDriver queryToBaseForCarAndDriver = new QueryToBaseForCarAndDriver();
 
+    SubOrderWithSpecialConditionsFilter subOrderWithSpecialConditionsFilter = new SubOrderWithSpecialConditionsFilter();
 
 
     public List<CarResult> getCarListSuitableCars(SubOrder subOrder, SubOrderWithSpecialConditions subOrderWithSpecialConditions){
@@ -25,7 +26,8 @@ public class GarageReadDAO {
             resultSet = queryToBaseForCarAndDriver.AskerToBaseForCarAndDriver(connection, subOrder, subOrderWithSpecialConditions);
              carList = carListFiller.CarListFiller(resultSet);
                              if (subOrderWithSpecialConditions != null) {
-                                 // pridumat'
+                                 carList = subOrderWithSpecialConditionsFilter.filter(carList, subOrderWithSpecialConditions);
+
 
             }
 

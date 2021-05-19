@@ -55,9 +55,9 @@ public class CarsSuitableIndexesPutter {
 
 
 
-        log.info("diff in sal " + diffInSalaries);
-        log.info("diff in prices " + diffInPrices);
-        log.info("diff in values " + diffCoeffForCorrection);
+        log.debug("diff in sal " + diffInSalaries);
+        log.debug("diff in prices " + diffInPrices);
+        log.debug("diff in values " + diffCoeffForCorrection);
 
 
         TreeMap <EconomicPOKAZATELI, CarResult> carsAndIndexes = new TreeMap<>();
@@ -65,9 +65,6 @@ public class CarsSuitableIndexesPutter {
 
         carMap.forEach((e, c) -> {
             e.setSuitableIndex(carsSuitableIndexesCalculator.executeIndexCalculation(indexOfClientParkMoneyRelationship, diffCoeffForCorrection, e.getPriceForOrder(), c.getEarnedThisWeek()));
-
-
-
             carsAndIndexes.put(e,c);
         });
 

@@ -29,6 +29,7 @@ public class CarListFiller {
             carResult.setReliabilityInPercents(resultSet.getInt("reliability_%"));
             carResult.setFuel_in_tank(resultSet.getInt("fuel_in_tank"));
             carResult.setTankCapacity(resultSet.getInt("tank_capacity"));
+            carResult.setIs_male(resultSet.getBoolean("is_male"));
 
             carResult.setSeats(resultSet.getInt("seats"));
             carResult.setMaxLoadKg(resultSet.getInt("carrying"));

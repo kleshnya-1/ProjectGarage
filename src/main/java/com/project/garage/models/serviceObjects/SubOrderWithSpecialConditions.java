@@ -15,4 +15,16 @@ public class SubOrderWithSpecialConditions {
         this.fuelType = fuelType;
         this.is_male = is_male;
     }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public FuelType getFuelType() {
+        return fuelType;
+    }
+
+    public boolean isIs_male() {
+        return is_male;
+    }
 }

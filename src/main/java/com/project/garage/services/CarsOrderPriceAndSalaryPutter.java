@@ -29,7 +29,7 @@ public class CarsOrderPriceAndSalaryPutter {
             double price = priceCalculator.calculatePrice(subOrder.getDistanceKm(),
                     subOrder.getNumOfKg(),carResult);
 
-            log.info("на "+subOrder.getDistanceKm()+" км"+ " потребуется "+fuelNeeded+" л топлива");
+            log.debug("на "+subOrder.getDistanceKm()+" км"+ " потребуется "+fuelNeeded+" л топлива");
 
 //проверка на наличие топлива для поездки
             if (fuelNeeded<carResult.getFuel_in_tank()) {
