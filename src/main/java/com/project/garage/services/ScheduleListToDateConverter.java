@@ -1,6 +1,6 @@
-package com.project.garage.dao;
+package com.project.garage.services;
 
-import com.project.garage.services.calcAndConv.TimeInterval;
+import com.project.garage.models.objects.TimeInterval;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -18,34 +18,24 @@ public class ScheduleListToDateConverter {
         List<TimeInterval> listTimeInterval = new ArrayList<>();
 
 
+
         Pattern pattern = Pattern.compile("\"");
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-
-
-
         for (String s: list){
             String[] strings = pattern.split(s);
-
             Calendar startDate = new GregorianCalendar();
             Calendar endDate = new GregorianCalendar();
-
-
-
 
             startDate.setTime( format.parse(strings[1]));
             endDate.setTime(format.parse(strings[3]));
 
 
-
-
-
             listTimeInterval.add(new TimeInterval(startDate,endDate)
-
 
             );
 
-            System.out.println(listTimeInterval.toString());
+
 
         }
 

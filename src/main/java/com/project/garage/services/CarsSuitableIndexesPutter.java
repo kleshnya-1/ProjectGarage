@@ -1,7 +1,7 @@
 package com.project.garage.services;
 
 import com.project.garage.models.objects.CarResult;
-import com.project.garage.models.objects.EconomicPOKAZATELI;
+import com.project.garage.models.objects.EconomicBlock;
 import com.project.garage.services.calcAndConv.CarsSuitableIndexesCalculator;
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,8 +16,8 @@ public class CarsSuitableIndexesPutter {
 
 
 
-    public NavigableMap<EconomicPOKAZATELI, CarResult> putIndexes
-            (NavigableMap<EconomicPOKAZATELI, CarResult> carMap,
+    public NavigableMap<EconomicBlock, CarResult> putIndexes
+            (NavigableMap<EconomicBlock, CarResult> carMap,
              double indexOfClientParkMoneyRelationship) {
 
 
@@ -27,7 +27,7 @@ public class CarsSuitableIndexesPutter {
         double minPrice = 0;
         double maxPrice = 0;
 
-        for (Map.Entry<EconomicPOKAZATELI, CarResult> entry : carMap.entrySet()) {
+        for (Map.Entry<EconomicBlock, CarResult> entry : carMap.entrySet()) {
 
             if (entry.getKey().getDriverEarnedThisWeek() < mimSalary)
                 mimSalary = entry.getKey().getDriverEarnedThisWeek();
@@ -54,13 +54,12 @@ public class CarsSuitableIndexesPutter {
         зарплат и приводит их к сравнимым равнозначным значениям*/
 
 
-
         log.debug("diff in sal " + diffInSalaries);
         log.debug("diff in prices " + diffInPrices);
         log.debug("diff in values " + diffCoeffForCorrection);
 
 
-        TreeMap <EconomicPOKAZATELI, CarResult> carsAndIndexes = new TreeMap<>();
+        TreeMap <EconomicBlock, CarResult> carsAndIndexes = new TreeMap<>();
 
 
         carMap.forEach((e, c) -> {

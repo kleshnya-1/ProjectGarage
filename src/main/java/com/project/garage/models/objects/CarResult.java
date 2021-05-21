@@ -9,14 +9,14 @@ import java.util.Iterator;
 public class CarResult extends Car {
     private String driverName;
     private double earnedThisWeek;
-    private int driver_id;
+
     private boolean is_male;
 
 
 
     public void setDriver_id(int id){
-       // super.setDriver_id(id);
-        this.driver_id = id;
+
+        super.setDriver_id(id) ;
     }
 
 
@@ -34,10 +34,8 @@ public class CarResult extends Car {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder
-                (super.toString()+'\n');
 
-        return sb.toString();
+        return super.toString()+"\n";
     }
 
 

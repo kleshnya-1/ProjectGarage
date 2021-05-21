@@ -1,12 +1,17 @@
 package com.project.garage.core;
 
+import com.project.garage.dao.DriverScheduleWriterDAO;
+import com.project.garage.models.objects.AssignedCarCreator;
+import com.project.garage.dao.ExceptionNoCarsFound;
+import com.project.garage.models.objects.AssignedCar;
 import com.project.garage.models.objects.CarResult;
 import com.project.garage.dao.GarageReadDAO;
-import com.project.garage.models.objects.EconomicPOKAZATELI;
+import com.project.garage.models.objects.EconomicBlock;
 import com.project.garage.models.serviceObjects.SubOrder;
 import com.project.garage.models.serviceObjects.SubOrderWithSpecialConditions;
 import com.project.garage.services.CarsOrderPriceAndSalaryPutter;
 import com.project.garage.services.CarsSuitableIndexesPutter;
+import com.project.garage.services.calcAndConv.PriceCalculator;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
@@ -25,6 +30,7 @@ public class Dispatcher {
     CarsOrderPriceAndSalaryPutter carsOrderPriceAndSalaryPutter = new CarsOrderPriceAndSalaryPutter();
     CarsSuitableIndexesPutter carsSuitableIndexesPutter = new CarsSuitableIndexesPutter();
 
+    DriverScheduleWriterDAO driverScheduleWriterDAO = new DriverScheduleWriterDAO();
 
     public Dispatcher(double percentOfMargin, double indexOfClientParkMoneyRelationship) {
         this.indexOfClientParkMoneyRelationship = indexOfClientParkMoneyRelationship;
@@ -39,46 +45,62 @@ public class Dispatcher {
 
     public CarResult publishOrderAndReturnChoosedCar(SubOrder subOrder, SubOrderWithSpecialConditions subOwSc) {
 
-       // List<CarResult> suitableCars =garageDAO.getCarListSuitableCars(subOrder, subOwSc);
-
-        log.info("\n \nЗапущен метод присвоения машинам эконом. показателей ");
-        NavigableMap<EconomicPOKAZATELI, CarResult> carsAndPrices =
-                //carsOrderPriceAndSalaryPutter.makeFromList(suitableCars,subOrder, subOwSc);
-                carsOrderPriceAndSalaryPutter.make(subOrder, subOwSc);
-
-
-        //System.out.println(carsAndPrices);
-        log.info("Машин с присвоенными ценами: " + carsAndPrices.size());
-
-        log.info("\n \n Запущен метод присвоения машинам индекса подходимости под заказ ");
-
-        NavigableMap<EconomicPOKAZATELI, CarResult> carsAndPricesAndIndexes=
-                carsSuitableIndexesPutter.putIndexes(carsAndPrices,indexOfClientParkMoneyRelationship);
-
-        log.info("Машин с присвоенными индексами: " + carsAndPricesAndIndexes.size());
-        log.info( "\n"+carsAndPricesAndIndexes.toString());
-
-        TreeMap<EconomicPOKAZATELI, CarResult> s = new TreeMap<>();
-        s.putAll(carsAndPricesAndIndexes);
+        try {
+            //запрос на лист машин и присвоение машинам эконом. показателей.
+            // eсли пуст - выкинет ошибку
+            NavigableMap<EconomicBlock, CarResult> carsAndPrices =
+                    carsOrderPriceAndSalaryPutter.make(subOrder, subOwSc);
 
 
+            log.info("Диспетчер(" + indexOfClientParkMoneyRelationship + "). Машин с присвоенными ценами: " + carsAndPrices.size());
 
-        return carsAndPricesAndIndexes.firstEntry().getValue();
+            //присвоение машинам в листе индекса подходимости под заказ
+            NavigableMap<EconomicBlock, CarResult> carsAndPricesAndIndexes =
+                    carsSuitableIndexesPutter.putIndexes(carsAndPrices, indexOfClientParkMoneyRelationship);
 
+            log.info("Диспетчер(" + indexOfClientParkMoneyRelationship + "). Машин с присвоенными индексами: " + carsAndPricesAndIndexes.size());
+            log.debug("\n" + carsAndPricesAndIndexes.toString());
 
+            //TreeMap<EconomicBlock, CarResult> s = new TreeMap<>();
+            //s.putAll(carsAndPricesAndIndexes);
 
+            return carsAndPricesAndIndexes.firstEntry().getValue();
 
-
+        } catch (ExceptionNoCarsFound e) {
+            log.info("Машин по запросу не найдено!");
+            e.printStackTrace();
+            return null;
+        }
 
 
     }
 
+    public AssignedCar assignToRace(CarResult choosedCar, SubOrder subOrderForAssigning ) {
+
+        AssignedCarCreator assignedCarCreator= new AssignedCarCreator();
+
+        AssignedCar assignedCar = assignedCarCreator.create(choosedCar, subOrderForAssigning,  percentOfMargin);
+        //все посчитать
+
+        try {
+            driverScheduleWriterDAO.addInSchedule(assignedCar);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // добавить водителю в рассписание
 
 
 
 
+        return assignedCar;
 
 
+    }
+
+//    TimeInterval timeIntervalForThisOrder = new TimeInterval();
+//        timeIntervalForThisOrder.setStartDate
+//                (new GregorianCalendar().add(Calendar.HOUR,sOrder.getHoursBeforeOrder()););
+//        timeIntervalForThisOrder.setEndDate();
 
 
 }

@@ -1,10 +1,14 @@
 package com.project.garage.dao;
 
 import com.project.garage.services.ConnectionMaker;
-import com.project.garage.services.calcAndConv.TimeInterval;
+import com.project.garage.models.objects.TimeInterval;
+import com.project.garage.services.queries.QueryToBaseForDriverSchedule;
+import com.project.garage.services.ScheduleListFiller;
+import com.project.garage.services.ScheduleListToDateConverter;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.text.ParseException;
 import java.util.*;
 
 public class DriverScheduleReaderDAO {
@@ -17,7 +21,7 @@ public class DriverScheduleReaderDAO {
     ScheduleListFiller scheduleListFiller = new ScheduleListFiller();
     ScheduleListToDateConverter scheduleListToDateConverter = new ScheduleListToDateConverter();
 
-    public List<String> getScheduleList(int driverId){
+    public List<String> getScheduleListString(int driverId){
 
         List<String> schedule = new ArrayList<>();
 
@@ -41,6 +45,25 @@ public class DriverScheduleReaderDAO {
 
         return schedule;
     }
+
+    public List<TimeInterval> getScheduleListTimeInt(int driverId){
+
+        List<TimeInterval> l = new ArrayList<>();
+
+        try {
+               l = scheduleListToDateConverter.convertMethod(getScheduleListString(driverId));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return l;
+
+
+    }
+
+
+
+
+
 
 
 

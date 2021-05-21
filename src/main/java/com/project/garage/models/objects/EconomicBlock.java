@@ -3,14 +3,14 @@ package com.project.garage.models.objects;
 import lombok.Data;
 
 @Data
-public class EconomicPOKAZATELI implements Comparable<EconomicPOKAZATELI> {
+public class EconomicBlock implements Comparable<EconomicBlock> {
 
 
     private  double suitableIndex=0;//определяет степень
     private double priceForOrder;
     private double driverEarnedThisWeek;
 
-    public EconomicPOKAZATELI(double suitableIndex, double priceForOrder, double driverEarnedThisWeek) {
+    public EconomicBlock(double suitableIndex, double priceForOrder, double driverEarnedThisWeek) {
         this.suitableIndex = suitableIndex;
         this.priceForOrder = priceForOrder;
         this.driverEarnedThisWeek = driverEarnedThisWeek;
@@ -30,7 +30,7 @@ public class EconomicPOKAZATELI implements Comparable<EconomicPOKAZATELI> {
     }
 
     @Override
-    public int compareTo(EconomicPOKAZATELI o) {
+    public int compareTo(EconomicBlock o) {
 
 //        if (this.suitableIndex == 0 || o.suitableIndex==0){
 //            if (this.priceForOrder<o.priceForOrder) return -1;

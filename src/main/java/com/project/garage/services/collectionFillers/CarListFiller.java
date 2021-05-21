@@ -1,4 +1,4 @@
-package com.project.garage.services;
+package com.project.garage.services.collectionFillers;
 
 import com.project.garage.models.objects.CarResult;
 import com.project.garage.services.calcAndConv.FuelTupeConverter;

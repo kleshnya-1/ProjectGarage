@@ -1,4 +1,4 @@
-package com.project.garage.core;
+package com.project.garage.services.calcAndConv;
 
 import com.project.garage.models.objects.CarResult;
 import com.project.garage.dao.GasStationDAO;

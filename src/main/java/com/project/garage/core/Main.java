@@ -5,19 +5,22 @@ import com.project.garage.models.objects.CarResult;
 import com.project.garage.models.enums.CarType;
 import com.project.garage.models.enums.FuelType;
 import com.project.garage.models.objects.CarDriver;
+import com.project.garage.models.objects.TimeInterval;
 import com.project.garage.models.serviceObjects.SubOrder;
 import com.project.garage.models.serviceObjects.SubOrderWithSpecialConditions;
+import com.project.garage.services.ScheduleListToDateConverter;
+import com.project.garage.services.calcAndConv.PriceCalculator;
 import lombok.extern.slf4j.Slf4j;
 
 
 import java.util.List;
-import java.util.Map;
+
 @Slf4j
 public class Main {
     public static void main(String[] args) throws Exception {
 
 
-        SubOrder o = new SubOrder(10.4, CarType.T,  1000,14);
+        SubOrder o = new SubOrder(10.4, CarType.T,  1000,20);
         SubOrder o2 = new SubOrder(10.4, CarType.T,  1000,0);
         SubOrder oPass = new SubOrder(10.4, CarType.P,  20,0);
         SubOrderWithSpecialConditions o1 = new SubOrderWithSpecialConditions("IVECO", FuelType.diesel, false);
@@ -35,21 +38,23 @@ public class Main {
        // System.out.println(price);
 
         Dispatcher dispatcher1 = new Dispatcher(1);
-       // Dispatcher dispatcher0 = new Dispatcher(0);
+        Dispatcher dispatcher0 = new Dispatcher(0);
 
-       //CarResult c0=  dispatcher0.publishOrderAndReturnChoosedCar(o,null);
+       CarResult c0=  dispatcher0.publishOrderAndReturnChoosedCar(o,null);
         CarResult c1=   dispatcher1.publishOrderAndReturnChoosedCar(o,null);
 
 
-      // System.out.println(c0);
-        System.out.println("min price 'n"+c1);
+       System.out.println(c0);
+        //System.out.println("min price 'n"+c1);
 
 
       CarDriver driver0 = new CarDriver();
      // CarDriver driver1 = new CarDriver();
 
-     // driver0.takeAndDriveTheCar(c0);
+      driver0.takeAndDriveTheCar(c0);
       driver0.returnCar(true);
+
+      dispatcher0.assignToRace(c1,o);
 
 //      Date date = new Date();
 //
@@ -67,12 +72,14 @@ public class Main {
 
 
 
-        DriverScheduleReaderDAO driverScheduleReaderDAO = new DriverScheduleReaderDAO();
-        List oo = driverScheduleReaderDAO.getScheduleList(1);
-        ScheduleListToDateConverter scheduleListToDateConverter = new ScheduleListToDateConverter();
-        List mmm = scheduleListToDateConverter.convertMethod(oo);
+//        DriverScheduleReaderDAO driverScheduleReaderDAO = new DriverScheduleReaderDAO();
+//        List oo = driverScheduleReaderDAO.getScheduleList(1);
+//        ScheduleListToDateConverter scheduleListToDateConverter = new ScheduleListToDateConverter();
+//        List mmm = scheduleListToDateConverter.convertMethod(oo);
+//
+//        System.out.println(mmm.toString());
 
-        System.out.println(mmm.toString());
+
 
 
 

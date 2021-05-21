@@ -1,4 +1,4 @@
-package com.project.garage.dao;
+package com.project.garage.services;
 
 import com.project.garage.models.objects.CarResult;
 

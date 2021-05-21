@@ -1,7 +1,7 @@
 package com.project.garage.dao;
 
 import com.project.garage.models.enums.FuelType;
-import com.project.garage.services.QueryToGasStationToFuelPrice;
+import com.project.garage.services.queries.QueryToGasStationToFuelPrice;
 import com.project.garage.services.ConnectionMaker;
 import lombok.extern.slf4j.Slf4j;
 

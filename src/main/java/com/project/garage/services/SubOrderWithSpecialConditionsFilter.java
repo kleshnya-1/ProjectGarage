@@ -1,4 +1,4 @@
-package com.project.garage.dao;
+package com.project.garage.services;
 
 import com.project.garage.models.objects.CarResult;
 import com.project.garage.models.serviceObjects.SubOrderWithSpecialConditions;
@@ -11,6 +11,8 @@ public class SubOrderWithSpecialConditionsFilter {
 
     public List<CarResult> filter(List<CarResult> l, SubOrderWithSpecialConditions sOrder){
         List<CarResult> filteredCars = new ArrayList<>(l);
+
+
 
 
         for (CarResult c : l){
