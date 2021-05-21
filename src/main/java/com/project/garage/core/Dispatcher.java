@@ -89,18 +89,12 @@ public class Dispatcher {
         }
         // добавить водителю в рассписание
 
-
-
-
         return assignedCar;
 
 
     }
 
-//    TimeInterval timeIntervalForThisOrder = new TimeInterval();
-//        timeIntervalForThisOrder.setStartDate
-//                (new GregorianCalendar().add(Calendar.HOUR,sOrder.getHoursBeforeOrder()););
-//        timeIntervalForThisOrder.setEndDate();
+
 
 
 }

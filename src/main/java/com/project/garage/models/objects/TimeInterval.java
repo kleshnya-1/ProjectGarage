@@ -51,8 +51,8 @@ log.debug("is "+t.toString() + " and " + toString()+ " crossed? I think it's "+ 
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 
-        return  ("["+format.format(this.startDate.getTime())+","+
-                format.format(this.endDate.getTime())+"]");
+        return  ("'["+format.format(this.startDate.getTime())+", "+
+                format.format(this.endDate.getTime())+"]'");
 
     }
 

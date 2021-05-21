@@ -20,7 +20,8 @@ public class DriverScheduleWriterDAO {
                 assignedCar.getCarResultInAssignedCar().getDriver_id(),
                 assignedCar.getOrder(),
                 assignedCar.getNumOfElements(),
-                assignedCar.getTimeInterval().toStringForSQL()
+                assignedCar.getTimeInterval().toStringForSQL(),
+                assignedCar.getPriceForOrder()
         );
 
     }
