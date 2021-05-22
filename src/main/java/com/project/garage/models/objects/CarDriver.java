@@ -1,5 +1,7 @@
 package com.project.garage.models.objects;
 
+import com.project.garage.models.objects.cars.CarResult;
+
 public class CarDriver {
 
     CarResult carResult;

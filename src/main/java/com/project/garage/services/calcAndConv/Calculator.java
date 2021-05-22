@@ -1,8 +1,8 @@
 package com.project.garage.services.calcAndConv;
 
 
-import com.project.garage.models.serviceObjects.SubOrder;
-import com.project.garage.models.serviceObjects.SubOrderWithSpecialConditions;
+import com.project.garage.models.objects.orders.Order;
+import com.project.garage.models.objects.orders.OrderWithSpecialConditions;
 import lombok.Data;
 
 @Data
@@ -18,15 +18,15 @@ public class Calculator {
     private double timeForLandingFullHours = 0.25;
     private double speedMiddleKmH = 50;
 
-    private SubOrder subOrder ;
-    private  SubOrderWithSpecialConditions subOwSc;
+    private Order order;
+    private OrderWithSpecialConditions subOwSc;
 
 
     public Calculator() {
 
     }
-    public Calculator(SubOrder subOrder, SubOrderWithSpecialConditions subOwSc) {
-       this.subOrder = subOrder;
+    public Calculator(Order order, OrderWithSpecialConditions subOwSc) {
+       this.order = order;
        this.subOwSc = subOwSc;
 
     }

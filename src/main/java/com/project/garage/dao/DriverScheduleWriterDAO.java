@@ -1,8 +1,8 @@
 package com.project.garage.dao;
 
-import com.project.garage.models.objects.AssignedCar;
+import com.project.garage.models.objects.cars.AssignedCar;
 import com.project.garage.services.ConnectionMaker;
-import com.project.garage.services.queries.QueryToBaseForDriverSchedule;
+import com.project.garage.dao.queries.QueriesToBaseForDriverSchedule;
 
 import java.sql.Connection;
 
@@ -10,7 +10,7 @@ public class DriverScheduleWriterDAO {
 
     Connection connection = new ConnectionMaker().makeConnection();
 
-    QueryToBaseForDriverSchedule queryToBaseForDriverSchedule = new QueryToBaseForDriverSchedule();
+    QueriesToBaseForDriverSchedule queryToBaseForDriverSchedule = new QueriesToBaseForDriverSchedule();
 
 
     public void addInSchedule(AssignedCar assignedCar) throws Exception {
@@ -18,6 +18,7 @@ public class DriverScheduleWriterDAO {
 
         queryToBaseForDriverSchedule.makeNoteInSchedule(connection,
                 assignedCar.getCarResultInAssignedCar().getDriver_id(),
+                assignedCar.getCarResultInAssignedCar().getId(),
                 assignedCar.getOrder(),
                 assignedCar.getNumOfElements(),
                 assignedCar.getTimeInterval().toStringForSQL(),

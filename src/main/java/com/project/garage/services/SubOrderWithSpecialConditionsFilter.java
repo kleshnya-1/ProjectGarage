@@ -1,7 +1,7 @@
 package com.project.garage.services;
 
-import com.project.garage.models.objects.CarResult;
-import com.project.garage.models.serviceObjects.SubOrderWithSpecialConditions;
+import com.project.garage.models.objects.cars.CarResult;
+import com.project.garage.models.objects.orders.OrderWithSpecialConditions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 public class SubOrderWithSpecialConditionsFilter {
 
 
-    public List<CarResult> filter(List<CarResult> l, SubOrderWithSpecialConditions sOrder){
+    public List<CarResult> filter(List<CarResult> l, OrderWithSpecialConditions sOrder){
         List<CarResult> filteredCars = new ArrayList<>(l);
 
 

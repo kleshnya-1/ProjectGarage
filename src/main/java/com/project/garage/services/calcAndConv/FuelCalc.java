@@ -1,6 +1,6 @@
 package com.project.garage.services.calcAndConv;
 
-import com.project.garage.models.objects.CarResult;
+import com.project.garage.models.objects.cars.CarResult;
 
 public class FuelCalc extends Calculator {
 

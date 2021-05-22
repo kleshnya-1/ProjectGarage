@@ -1,60 +1,66 @@
 package com.project.garage.core;
 
-import com.project.garage.dao.*;
-import com.project.garage.models.objects.CarResult;
-import com.project.garage.models.enums.CarType;
 import com.project.garage.models.enums.FuelType;
+import com.project.garage.models.objects.cars.AssignedCar;
+import com.project.garage.models.enums.CarType;
 import com.project.garage.models.objects.CarDriver;
-import com.project.garage.models.objects.TimeInterval;
-import com.project.garage.models.serviceObjects.SubOrder;
-import com.project.garage.models.serviceObjects.SubOrderWithSpecialConditions;
-import com.project.garage.services.ScheduleListToDateConverter;
-import com.project.garage.services.calcAndConv.PriceCalculator;
+import com.project.garage.models.objects.orders.Order;
+import com.project.garage.models.objects.orders.OrderWithSpecialConditions;
 import lombok.extern.slf4j.Slf4j;
-
-
-import java.util.List;
 
 @Slf4j
 public class Main {
     public static void main(String[] args) throws Exception {
 
 
-        SubOrder o = new SubOrder(10.4, CarType.T,  1000,20);
-        SubOrder o2 = new SubOrder(10.4, CarType.T,  1000,0);
-        SubOrder oPass = new SubOrder(10.4, CarType.P,  20,0);
-        SubOrderWithSpecialConditions o1 = new SubOrderWithSpecialConditions("IVECO", FuelType.diesel, false);
-        GasStationDAO gasStation = new GasStationDAO();
-
-        log.info(gasStation.getFuelMap().toString());
+        Order o = new Order("из А в пу\nнкт Б",16.4, CarType.T,  1000,14.0);
+        Order oMore = new Order("из А в пункт Б",6.4, CarType.T,  900,16.0);
+        Order oMore2 = new Order("Аэропорт Домодедово",18.3, CarType.P,  6,18.0);
+        OrderWithSpecialConditions o1 = new OrderWithSpecialConditions("IVECO", FuelType.diesel, false);
 
 
-        GarageReadDAO g = new GarageReadDAO();
-       // List<CarResult> c =        g.getCarListSuitableCars(o, null);
-        //System.out.println(c);
-
-        PriceCalculator p = new PriceCalculator();
-        //double price = p.calculatePrice(100, 2000, c.get(0));
-       // System.out.println(price);
-
-        Dispatcher dispatcher1 = new Dispatcher(1);
         Dispatcher dispatcher0 = new Dispatcher(0);
 
-       CarResult c0=  dispatcher0.publishOrderAndReturnChoosedCar(o,null);
-        CarResult c1=   dispatcher1.publishOrderAndReturnChoosedCar(o,null);
+        // CarResult c0=  dispatcher0.publishOrderAndReturnChoosedCar(o,null);
 
 
-       System.out.println(c0);
+        CarDriver driver0 = new CarDriver();
+         /*
+        //dispatcher0.publishOrderAndReturnAssignedCar(c0,o);
+
+*/
+
+      //AssignedCar assignedCar =dispatcher0.publishOrderAndReturnAssignedCar(oMore2, null);
+
+        dispatcher0.printSchedule();
+        System.out.println();
+
+
+
+        //  SubOrder o2 = new SubOrder(10.4, CarType.T,  1000,0);
+        //SubOrder oPass = new SubOrder(10.4, CarType.P,  20,0);
+
+
+
+        // List<CarResult> c =        g.getCarListSuitableCars(o, null);
+        //System.out.println(c);
+
+        //double price = p.calculatePrice(100, 2000, c.get(0));
+        // System.out.println(price);
+
+        // Dispatcher dispatcher1 = new Dispatcher(1);
+
+        //CarResult c1=   dispatcher1.publishOrderAndReturnChoosedCar(o,null);
+
+
+
         //System.out.println("min price 'n"+c1);
 
+        // CarDriver driver1 = new CarDriver();
 
-      CarDriver driver0 = new CarDriver();
-     // CarDriver driver1 = new CarDriver();
+        //  driver0.takeAndDriveTheCar(c0);
+        // driver0.returnCar(true);
 
-      driver0.takeAndDriveTheCar(c0);
-      driver0.returnCar(true);
-
-      dispatcher0.assignToRace(c1,o);
 
 //      Date date = new Date();
 //

@@ -1,8 +1,7 @@
 package com.project.garage.services.calcAndConv;
 
-import com.project.garage.models.objects.CarResult;
+import com.project.garage.models.objects.cars.CarResult;
 import com.project.garage.dao.GasStationDAO;
-import com.project.garage.services.calcAndConv.FuelCalc;
 
 public class PriceCalculator {
    private FuelCalc fuelCalc = new FuelCalc();
