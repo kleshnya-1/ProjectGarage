@@ -25,9 +25,10 @@ public class TimeTableFiller {
             t.setOrder(r.getString("order_info"));
             t.setPrice(r.getString("order_price"));
             t.setNumOfEl(r.getString("num_of_elements"));
-           // t.setDistance(r.getDouble(""));
+            t.setDistance(r.getString("distance_km"));
 
             t.setBusyTime(r.getString("busy_time"));
+            t.setNote(r.getString("note"));
 
             timeTableList.add(t);
 

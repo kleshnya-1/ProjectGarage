@@ -4,21 +4,25 @@ import com.project.garage.models.objects.cars.CarResult;
 import com.project.garage.dao.GasStationDAO;
 
 public class PriceCalculator {
-   private FuelCalc fuelCalc = new FuelCalc();
+    private FuelCalc fuelCalc = new FuelCalc();
     private GasStationDAO gasStationDAO = new GasStationDAO();
 
 
-    public double calculatePrice(double distance, int load, CarResult carResult){
+    public double calculatePrice(double distance, int load, CarResult carResult) {
 
-        //carResult
 
-          double fuelCunsumption = fuelCalc.fuelConsExpected(distance, carResult.getConsumption(),
+
+        double fuelCunsumption = getFuelConsumption(  distance,  load,  carResult);
+
+        double fuelPrice = gasStationDAO.getFuelPrice(carResult.getFuelType());
+
+        return fuelPrice * fuelCunsumption;
+
+    }
+
+    public double getFuelConsumption(double distance, int load, CarResult carResult) {
+        return fuelCalc.fuelConsExpected(distance, carResult.getConsumption(),
                 carResult.getConsumption_loaded(), load, carResult.getMaxLoadKg());
-
-          double fuelPrice = gasStationDAO.getFuelPrice(carResult.getFuelType());
-
-          return fuelPrice*fuelCunsumption;
-
     }
 
 }

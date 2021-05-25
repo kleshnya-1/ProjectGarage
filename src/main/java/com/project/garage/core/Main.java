@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
 
-        Order o = new Order("из А в пу\nнкт Б",16.4, CarType.T,  1000,14.0);
+        Order o = new Order("из D в пункт E",16.4, CarType.T,  1000,18.0);
         Order oMore = new Order("из А в пункт Б",6.4, CarType.T,  900,16.0);
         Order oMore2 = new Order("Аэропорт Домодедово",18.3, CarType.P,  6,18.0);
         OrderWithSpecialConditions o1 = new OrderWithSpecialConditions("IVECO", FuelType.diesel, false);
@@ -24,16 +24,26 @@ public class Main {
         // CarResult c0=  dispatcher0.publishOrderAndReturnChoosedCar(o,null);
 
 
-        CarDriver driver0 = new CarDriver();
          /*
         //dispatcher0.publishOrderAndReturnAssignedCar(c0,o);
 
 */
 
-      //AssignedCar assignedCar =dispatcher0.publishOrderAndReturnAssignedCar(oMore2, null);
 
-        dispatcher0.printSchedule();
+        AssignedCar assignedCar =dispatcher0.publishOrderAndReturnAssignedCar(o, null);
+
+       // dispatcher0.printSchedule();
         System.out.println();
+
+        //CarDriver driver0 = new CarDriver(0);
+        //driver0.setCar(assignedCar);
+
+        CarDriver driver0 = new CarDriver(assignedCar.getCarResultInAssignedCar().getDriver_id());
+        //driver0.takeTheCar(assignedCar);
+
+        //driver0.driveCar();
+
+       // driver0.returnCar(true);
 
 
 

@@ -784,7 +784,7 @@ false YEKT
 false Z
 false Zulu
 </TimeZones>
-      <StartupTime>1621692131</StartupTime>
+      <StartupTime>1621943948</StartupTime>
     </root>
     <database id="2" parent="1" name="postgres">
       <ObjectId>13442</ObjectId>
@@ -794,7 +794,7 @@ false Zulu
     <database id="3" parent="1" name="project_garage_database">
       <ObjectId>16456</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>1043</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1176</IntrospectionStateNumber>
       <Current>1</Current>
       <Relations>sequence|table|16509|16511|1
 sequence|table|16539|16481|1
@@ -878,7 +878,7 @@ UC/10
 </Acl>
       <StateNumber>287</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>1044</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1177</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="20" parent="3" name="plpgsql">
@@ -61697,17 +61697,17 @@ T</Labels>
     <table id="5148" parent="19" name="cars">
       <ObjectId>16481</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>761</StateNumber>
+      <StateNumber>1055</StateNumber>
     </table>
     <table id="5149" parent="19" name="driver_schedule">
       <ObjectId>16581</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>1042</StateNumber>
+      <StateNumber>1139</StateNumber>
     </table>
     <table id="5150" parent="19" name="drivers">
       <ObjectId>16473</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>817</StateNumber>
+      <StateNumber>1160</StateNumber>
     </table>
     <table id="5151" parent="19" name="fuel_price">
       <ObjectId>16542</ObjectId>
@@ -109825,7 +109825,13 @@ umserver</ColNames>
       <StateNumber>761</StateNumber>
       <TypeId>16556</TypeId>
     </column>
-    <index id="16131" parent="5148" name="cars_pk">
+    <column id="16131" parent="5148" name="odometer_km">
+      <Position>15</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>1055</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <index id="16132" parent="5148" name="cars_pk">
       <ObjectId>16562</ObjectId>
       <StateNumber>731</StateNumber>
       <ColNames>id</ColNames>
@@ -109836,14 +109842,14 @@ umserver</ColNames>
       <CollationNames>default</CollationNames>
       <ClassIds>3126</ClassIds>
     </index>
-    <key id="16132" parent="5148" name="cars_pk">
+    <key id="16133" parent="5148" name="cars_pk">
       <ObjectId>16563</ObjectId>
       <StateNumber>731</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>cars_pk</UnderlyingIndexName>
     </key>
-    <foreign-key id="16133" parent="5148" name="cars_for_excers_drivers__fk">
+    <foreign-key id="16134" parent="5148" name="cars_for_excers_drivers__fk">
       <ObjectId>16489</ObjectId>
       <StateNumber>653</StateNumber>
       <ColNames>driver_id</ColNames>
@@ -109853,7 +109859,7 @@ umserver</ColNames>
       <RefKeyName>drivers_pk</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="16134" parent="5148" name="fuel_price___fk">
+    <foreign-key id="16135" parent="5148" name="fuel_price___fk">
       <ObjectId>16549</ObjectId>
       <StateNumber>656</StateNumber>
       <ColNames>fuel</ColNames>
@@ -109862,7 +109868,7 @@ umserver</ColNames>
       <RefTableName>fuel_price</RefTableName>
       <RefColNames>fuel_type</RefColNames>
     </foreign-key>
-    <column id="16135" parent="5149" name="id">
+    <column id="16136" parent="5149" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -109870,23 +109876,17 @@ umserver</ColNames>
       <DefaultExpression>nextval(&apos;driver_schedule_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="16136" parent="5149" name="driver_id">
+    <column id="16137" parent="5149" name="driver_id">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>823</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="16137" parent="5149" name="busy_time">
+    <column id="16138" parent="5149" name="busy_time">
       <Position>3</Position>
       <DataType>tsrange|0s</DataType>
       <StateNumber>823</StateNumber>
       <TypeId>3908</TypeId>
-    </column>
-    <column id="16138" parent="5149" name="start">
-      <Position>4</Position>
-      <DataType>date|0s</DataType>
-      <StateNumber>829</StateNumber>
-      <TypeId>1082</TypeId>
     </column>
     <column id="16139" parent="5149" name="order_info">
       <Position>5</Position>
@@ -109912,7 +109912,19 @@ umserver</ColNames>
       <StateNumber>888</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="16143" parent="5149" name="driver_schedule_id_uindex">
+    <column id="16143" parent="5149" name="note">
+      <Position>10</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>1096</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="16144" parent="5149" name="distance_km">
+      <Position>11</Position>
+      <DataType>double precision|0s</DataType>
+      <StateNumber>1139</StateNumber>
+      <TypeId>701</TypeId>
+    </column>
+    <index id="16145" parent="5149" name="driver_schedule_id_uindex">
       <ObjectId>16588</ObjectId>
       <StateNumber>1033</StateNumber>
       <ColNames>id</ColNames>
@@ -109921,7 +109933,7 @@ umserver</ColNames>
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <index id="16144" parent="5149" name="driver_schedule_pk">
+    <index id="16146" parent="5149" name="driver_schedule_pk">
       <ObjectId>16589</ObjectId>
       <StateNumber>1033</StateNumber>
       <ColNames>id</ColNames>
@@ -109931,14 +109943,14 @@ umserver</ColNames>
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <key id="16145" parent="5149" name="driver_schedule_pk">
+    <key id="16147" parent="5149" name="driver_schedule_pk">
       <ObjectId>16590</ObjectId>
       <StateNumber>825</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>driver_schedule_pk</UnderlyingIndexName>
     </key>
-    <foreign-key id="16146" parent="5149" name="driver_schedule_cars_id_fk">
+    <foreign-key id="16148" parent="5149" name="driver_schedule_cars_id_fk">
       <ObjectId>16662</ObjectId>
       <StateNumber>1042</StateNumber>
       <ColNames>car_id</ColNames>
@@ -109948,7 +109960,7 @@ umserver</ColNames>
       <RefKeyName>cars_pk</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="16147" parent="5150" name="id">
+    <column id="16149" parent="5150" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -109956,46 +109968,34 @@ umserver</ColNames>
       <DefaultExpression>nextval(&apos;drivers_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="16148" parent="5150" name="name">
+    <column id="16150" parent="5150" name="name">
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
       <StateNumber>551</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="16149" parent="5150" name="watch">
+    <column id="16151" parent="5150" name="watch">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>551</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="16150" parent="5150" name="is_male">
+    <column id="16152" parent="5150" name="is_male">
       <Position>5</Position>
       <DataType>boolean|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>592</StateNumber>
       <TypeId>16</TypeId>
     </column>
-    <column id="16151" parent="5150" name="earned_this_week">
+    <column id="16153" parent="5150" name="earned_this_week">
       <Position>6</Position>
-      <DataType>double precision|0s</DataType>
-      <StateNumber>683</StateNumber>
-      <TypeId>701</TypeId>
-    </column>
-    <column id="16152" parent="5150" name="busy_time">
-      <Position>8</Position>
-      <DataType>tsrange|0s</DataType>
-      <StateNumber>782</StateNumber>
-      <TypeId>3908</TypeId>
-    </column>
-    <column id="16153" parent="5150" name="column_7">
-      <Position>9</Position>
-      <DataType>daterange|0s</DataType>
-      <StateNumber>817</StateNumber>
-      <TypeId>3912</TypeId>
+      <DataType>real|0s</DataType>
+      <StateNumber>1161</StateNumber>
+      <TypeId>700</TypeId>
     </column>
     <index id="16154" parent="5150" name="drivers_pk">
       <ObjectId>16479</ObjectId>
-      <StateNumber>551</StateNumber>
+      <StateNumber>1160</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>

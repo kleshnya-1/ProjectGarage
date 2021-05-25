@@ -62,7 +62,7 @@ public class Dispatcher {
             NavigableMap<EconomicBlock, CarResult> carsAndPricesAndIndexes =
                     carsSuitableIndexesPutter.putIndexes(carsAndPrices, indexOfClientParkMoneyRelationship);
 
-            log.info("Диспетчер(" + indexOfClientParkMoneyRelationship + "). Машин с присвоенными индексами: " + carsAndPricesAndIndexes.size());
+            log.info("Диспетчер(" + indexOfClientParkMoneyRelationship + "). Машин с присвоенными рейтингами: " + carsAndPricesAndIndexes.size());
             log.debug("\n" + carsAndPricesAndIndexes.toString());
 
             //TreeMap<EconomicBlock, CarResult> s = new TreeMap<>();
@@ -81,6 +81,8 @@ public class Dispatcher {
 
     // переданную машину преобразует и ДЕЛАЕТ запись в рассписании.
     public AssignedCar assignToRaceAndReturnAssignedCar(CarResult choosedCar, Order orderForAssigning) {
+
+        if (choosedCar == null) throw new NullPointerException("Машина не передана для обработки");
 
         AssignedCarCreator assignedCarCreator= new AssignedCarCreator();
 

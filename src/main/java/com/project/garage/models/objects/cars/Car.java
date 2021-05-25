@@ -18,6 +18,7 @@ public class Car implements Cloneable {
     private int seats;
     private int maxLoadKg;
     private int tankCapacity;
+    private int odometer;
 
 
     public Car clone() throws CloneNotSupportedException{

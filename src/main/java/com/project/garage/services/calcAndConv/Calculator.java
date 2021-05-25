@@ -14,6 +14,8 @@ public class Calculator {
     //private double loadedDistance ;
     //private double expectedLoadedConsumption;
 
+
+
     private double reserveTimeHours = 0.5;
     private double timeForLandingFullHours = 0.25;
     private double speedMiddleKmH = 50;
@@ -21,13 +23,16 @@ public class Calculator {
     private Order order;
     private OrderWithSpecialConditions subOwSc;
 
-
     public Calculator() {
 
     }
+
     public Calculator(Order order, OrderWithSpecialConditions subOwSc) {
        this.order = order;
        this.subOwSc = subOwSc;
 
     }
+    double unloadedDistance = getDistanceFromGarageKm()*2;
+    double unloadedDistanceForCalc = getDistanceFromGarageKm()*2+getReserveDistanceInKm();
+
 }

@@ -33,6 +33,7 @@ public class CarListFiller {
 
             carResult.setSeats(resultSet.getInt("seats"));
             carResult.setMaxLoadKg(resultSet.getInt("carrying"));
+            carResult.setOdometer(resultSet.getInt("odometer_km"));
 
 
             //System.out.println(resultSet.getString("fuel"));

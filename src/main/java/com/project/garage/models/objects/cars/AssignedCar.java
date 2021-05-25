@@ -9,6 +9,8 @@ public class AssignedCar  {
 
     private String order;
     private double priceForOrder;
+    private double orderDistance;
+    private double fuelExpectedConsumption;
     private int numOfElements;
     TimeInterval timeInterval;
     CarResult carResultInAssignedCar;

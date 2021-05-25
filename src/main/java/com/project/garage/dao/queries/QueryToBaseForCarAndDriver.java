@@ -22,8 +22,7 @@ public class QueryToBaseForCarAndDriver {
                 (" select * " +
                         "from cars left join drivers on cars.driver_id = drivers.id where " +
                         " seats >=? and carrying >=? and is_ok = true and watch=?  " );
-        //SELECT * FROM course WHERE dept_name='Comp. Sci.' AND credits>3;
-        //preparedStatement.setInt(1, 12);
+
         preparedStatement.setInt(1, order.getNumOfPass());
         preparedStatement.setInt(2, order.getNumOfKg());
         preparedStatement.setInt(3, REFACTORWatchCalc.returnWatch(order));
@@ -32,6 +31,20 @@ public class QueryToBaseForCarAndDriver {
 
 
         return resultSet;
+    }
+
+    public void addInfoForCars(Connection connection, String id, Boolean techState, int odometer, double fuel ) throws Exception {
+        PreparedStatement preparedStatement = connection.prepareStatement
+                (" update  cars set is_ok=?, odometer_km=odometer_km+?, " +
+                        "fuel_in_tank=fuel_in_tank-? " +
+                        "where  id  =? " );
+
+        preparedStatement.setBoolean(1, techState);
+        preparedStatement.setInt(2, odometer);
+        preparedStatement.setDouble(3, fuel);
+        preparedStatement.setString(4, id);
+        preparedStatement.executeUpdate();
+
     }
 
 
